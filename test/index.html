@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>jquery-linkselect</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+        <script type="text/javascript" src="../include/jquery.linkselect.js"></script>
+    </head>
+
+    <body>
+        <h1>jquery-linkselect</h1>
+
+        <div class="test" id="test_1">
+            <h2>From Unordered List, No Label</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script type="text/javascript">
+                /*globals jQuery*/
+                jQuery('#test_1 ul').linkSelect();
+            </script>
+        </div>
+
+        <div class="test" id="test_2">
+            <h2>From Unordered List, With Label</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script type="text/javascript">
+                /*globals jQuery*/
+                jQuery('#test_2 ul').linkSelect({ label: 'Visit' });
+            </script>
+        </div>
+
+        <div class="test" id="test_3">
+            <h2>From Paragraph, With Label</h2>
+            <p>Visit <a href="http://archaichorizon.com/">Archaic Horizon</a>, which uses
+            <a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></p>
+            <script type="text/javascript">
+                /*globals jQuery*/
+                jQuery('#test_3 p').linkSelect({ label: 'Go to' });
+            </script>
+        </div>
+    </body>
+</html>
