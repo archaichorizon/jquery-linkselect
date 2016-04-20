@@ -3,8 +3,66 @@
     <head>
         <title>jquery-linkselect</title>
 
+        <style>
+            .test {
+                padding-bottom: 1em;
+                margin-bottom: 1em;
+                border-bottom: 1px solid #ddd;
+            }
+        </style>
+
         <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
         <script src="../jquery.linkselect.js"></script>
+
+        <script>
+            /*jslint this:true browser:true*/
+            /*global jQuery*/
+
+            var Test = (function (jQuery) {
+                'use strict';
+
+                function Klass($test) {
+                    this.$test = $test;
+                    this.optionsJson = jQuery.trim(this.getEl().find('script.options').text());
+                }
+
+                Klass.createAndSetup = function ($test) {
+                    var test;
+
+                    test = new Klass($test);
+                    test.setUp();
+
+                    return test;
+                };
+
+                Klass.prototype = {
+
+                    getEl: function () {
+                        return this.$test;
+                    },
+
+                    getOptionsJson: function () {
+                        return this.optionsJson;
+                    },
+
+                    getOptions: function () {
+                        return jQuery.parseJSON(this.getOptionsJson());
+                    },
+
+                    setUp: function () {
+                        if (!this.getEl().find(':header').size()) {
+                            jQuery('<h2><code>' + this.getOptionsJson() + '</code></h2>')
+                                .prependTo(this.$test);
+                        }
+
+                        //Run the test.
+                        this.getEl().find('ul').linkSelect(this.getOptions());
+                    }
+                };
+
+                return Klass;
+            }(jQuery));
+        </script>
     </head>
 
     <body>
@@ -16,100 +74,102 @@
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {}
+            </script>
             <script>
-                jQuery('#test-1 ul').linkSelect();
+                Test.createAndSetup(jQuery('#test-1'));
             </script>
         </div>
 
         <div class="test" id="test-2">
-            <h2>With label</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {"label": "Visit"}
+            </script>
             <script>
-                jQuery('#test-2 ul').linkSelect({
-                    label: 'Visit'
-                });
+                Test.createAndSetup(jQuery('#test-2'));
             </script>
         </div>
 
         <div class="test" id="test-5">
-            <h2>Submit button with custom label</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {"submitButton": {"label": "Let's roll!"}}
+            </script>
             <script>
-                jQuery('#test-5 ul').linkSelect({
-                    submitButton: {
-                        label: "Let's roll!"
-                    }
-                });
+                Test.createAndSetup(jQuery('#test-5'));
             </script>
         </div>
 
         <div class="test" id="test-4">
-            <h2>No submit button</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {"submitButton": false}
+            </script>
             <script>
-                jQuery('#test-4 ul').linkSelect({
-                    submitButton: false
-                });
+                Test.createAndSetup(jQuery('#test-4'));
             </script>
         </div>
 
         <div class="test" id="test-6">
-            <h2>Custom <code>select</code> placeholder, no submit button</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
             </ul>
-            <script>
-                jQuery('#test-6 ul').linkSelect({
-                    select: {
-                        placeholder: 'Please select a website to visit'
-                    },
-                    submitButton: false
-                });
+            <script type="application/json" class="options">
+                {"select": {"placeholder": "Please select a website to visit"}, "submitButton": false}
             </script>
-        </div>
-
-        <div class="test" id="test-7">
-            <h2>Anchor parent selected</h2>
-            <ul>
-                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
-                <li class="selected"><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
-            </ul>
             <script>
-                jQuery('#test-7 ul').linkSelect();
+                Test.createAndSetup(jQuery('#test-6'));
             </script>
         </div>
 
         <div class="test" id="test-8">
-            <h2>Anchor selected</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
                 <li><a href="http://www.archive.org/details/archaichorizon" class="selected">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {}
+            </script>
             <script>
-                jQuery('#test-8 ul').linkSelect();
+                Test.createAndSetup(jQuery('#test-8'));
             </script>
         </div>
 
         <div class="test" id="test-9">
-            <h2>No submit button, anchor parent selected</h2>
             <ul>
                 <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
-                <li class="selected"><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon" class="selected">Internet Archive</a></li>
             </ul>
+            <script type="application/json" class="options">
+                {"submitButton": false}
+            </script>
             <script>
-                jQuery('#test-9 ul').linkSelect({
-                    submitButton: false
-                });
+                Test.createAndSetup(jQuery('#test-9'));
+            </script>
+        </div>
+
+        <div class="test" id="test-10">
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon" class="active">Internet Archive</a></li>
+            </ul>
+            <script type="application/json" class="options">
+                {"submitButton": false, "selectedSelector": ".active"}
+            </script>
+            <script>
+                Test.createAndSetup(jQuery('#test-10'));
             </script>
         </div>
     </body>

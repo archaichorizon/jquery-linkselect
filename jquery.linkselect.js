@@ -18,11 +18,6 @@
         linkselect: {
 
             /**
-             * @type String
-             */
-            CSS_CLASS_SELECTED: 'selected',
-
-            /**
              * @type Number
              */
             lastId: 0,
@@ -51,10 +46,6 @@
     jQuery.fn.extend({
 
         /**
-         * jquery-linkselect replaces each selected element with a link-launching form created from all links found
-         * within the element.  Each form comprises a drop-down listbox, containing details of the links, and a submit
-         * button.
-         *
          * @param {Object} [options]
          * @returns {jQuery}
          */
@@ -66,7 +57,8 @@
                 },
                 submitButton: {
                     label: 'Go'
-                }
+                },
+                selectedSelector: '.selected'
             }, options || {});
 
             return this.each(function () {
@@ -110,10 +102,7 @@
                     var $anchor = jQuery(this),
                         attrs = {value: $anchor.attr('href')};
 
-                    if (
-                        $anchor.hasClass(jQuery.linkselect.CSS_CLASS_SELECTED)
-                        || $anchor.parent().hasClass(jQuery.linkselect.CSS_CLASS_SELECTED)
-                    ) {
+                    if ($anchor.is(finalOptions.selectedSelector)) {
                         attrs.selected = 'selected';
                     }
 
