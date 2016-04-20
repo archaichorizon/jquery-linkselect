@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jquery-linkselect</title>
+
+        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../jquery.linkselect.js"></script>
+    </head>
+
+    <body>
+        <h1>jquery-linkselect</h1>
+
+        <div class="test" id="test-1">
+            <h2>Default behaviour</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-1 ul').linkSelect();
+            </script>
+        </div>
+
+        <div class="test" id="test-2">
+            <h2>With label</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-2 ul').linkSelect({
+                    label: 'Visit'
+                });
+            </script>
+        </div>
+
+        <div class="test" id="test-5">
+            <h2>Submit button with custom label</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-5 ul').linkSelect({
+                    submitButton: {
+                        label: "Let's roll!"
+                    }
+                });
+            </script>
+        </div>
+
+        <div class="test" id="test-4">
+            <h2>No submit button</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-4 ul').linkSelect({
+                    submitButton: false
+                });
+            </script>
+        </div>
+
+        <div class="test" id="test-6">
+            <h2>Custom <code>select</code> placeholder, no submit button</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-6 ul').linkSelect({
+                    select: {
+                        placeholder: 'Please select a website to visit'
+                    },
+                    submitButton: false
+                });
+            </script>
+        </div>
+
+        <div class="test" id="test-7">
+            <h2>Anchor parent selected</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li class="selected"><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-7 ul').linkSelect();
+            </script>
+        </div>
+
+        <div class="test" id="test-8">
+            <h2>Anchor selected</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li><a href="http://www.archive.org/details/archaichorizon" class="selected">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-8 ul').linkSelect();
+            </script>
+        </div>
+
+        <div class="test" id="test-9">
+            <h2>No submit button, anchor parent selected</h2>
+            <ul>
+                <li><a href="http://archaichorizon.com/">Archaic Horizon</a></li>
+                <li class="selected"><a href="http://www.archive.org/details/archaichorizon">Internet Archive</a></li>
+            </ul>
+            <script>
+                jQuery('#test-9 ul').linkSelect({
+                    submitButton: false
+                });
+            </script>
+        </div>
+    </body>
+</html>
