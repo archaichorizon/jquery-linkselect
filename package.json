@@ -1,0 +1,10 @@
+{
+  "name": "jquery-linkselect",
+  "version": "1.0.0",
+  "description": "jquery-linkselect replaces each selected element with a URL-opening form created from all links found within the element.",
+  "main": "jquery.linkselect.js",
+  "repository": "https://github.com/archaichorizon/jquery-linkselect.git",
+  "author": "Steve Hobbs <steve@powder-blue.com>",
+  "license": "MIT",
+  "private": true
+}
