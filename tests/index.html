@@ -11,7 +11,7 @@
             }
         </style>
 
-        <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
         <script src="../jquery.linkselect.js"></script>
 
         <script>
@@ -50,7 +50,7 @@
                     },
 
                     setUp: function () {
-                        if (!this.getEl().find(':header').size()) {
+                        if (!this.getEl().find(':header').length) {
                             jQuery('<h2><code>' + this.getOptionsJson() + '</code></h2>')
                                 .prependTo(this.$test);
                         }

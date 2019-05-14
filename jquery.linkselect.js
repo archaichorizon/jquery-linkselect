@@ -71,7 +71,7 @@
 
                 $anchors = $container.find('a');
 
-                if (!$anchors.size()) {
+                if (!$anchors.length) {
                     return true;
                 }
 
@@ -118,7 +118,7 @@
                 } else {
                     $select
                         .prepend('<option value="">' + finalOptions.select.placeholder + '</option>')
-                        .change(function () {
+                        .on('change', function () {
                             if ($select.val().length) {
                                 jQuery.linkselect.selectChange($select);
                             }
